@@ -1,2 +1,3 @@
-# metatomic-workshop-spring-25
-A collection of interactive tutorials supporting the spring 2025 metatomic workshop
+# workshop-spring-2025
+
+Interactive tutorials supporting the spring 2025 metatensor workshop
