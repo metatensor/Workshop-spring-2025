@@ -1,0 +1,11 @@
+metatomic-torch >=0.1.1,<0.2
+metatensor-torch >=0.7.6,<0.8
+metatensor-learn >=0.3.2,<0.4
+featomic-torch >=0.7.0,<0.9
+torch==2.6.*
+
+chemiscope
+chemfiles
+ase
+jupyter
+scikit-learn
