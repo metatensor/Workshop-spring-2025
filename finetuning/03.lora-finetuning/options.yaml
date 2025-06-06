@@ -1,0 +1,45 @@
+architecture:
+  name: pet
+  model:
+    d_pet: 256
+
+  training:
+    finetune:
+      method: lora
+      config:
+        alpha: 0.5
+        rank: 4
+    batch_size: 4
+    num_epochs: 50
+    num_epochs_warmup: 0
+    learning_rate: 1e-4
+
+training_set:
+  systems:
+    read_from: "../common/matbench-sample/matbench-sample-train.xyz" # file where the positions are stored
+    length_unit: angstrom
+  targets:
+    energy:
+      unit: eV
+      forces: false
+      stress: false
+
+validation_set:
+  systems: 
+    read_from: "../common/matbench-sample/matbench-sample-val.xyz" # file where the positions are stored
+    length_unit: angstrom
+  targets:
+    energy:
+      unit: eV
+      forces: false
+      stress: false
+
+test_set:
+  systems: 
+    read_from: "../common/matbench-sample/matbench-sample-test.xyz" # file where the positions are stored
+    length_unit: angstrom
+  targets:
+    energy:
+      unit: eV
+      forces: false
+      stress: false

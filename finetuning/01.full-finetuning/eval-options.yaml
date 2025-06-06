@@ -1,0 +1,5 @@
+systems: "../common/matbench-sample/matbench-sample-test.xyz"
+targets:
+  energy:
+    forces: false
+    stress: false
