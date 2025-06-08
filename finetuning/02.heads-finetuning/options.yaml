@@ -9,14 +9,14 @@ architecture:
       config:
         head_modules: ['node_heads', 'edge_heads']
         last_layer_modules: ['node_last_layers', 'edge_last_layers']
-    batch_size: 4
-    num_epochs: 50
+    batch_size: 8
+    num_epochs: 20
     num_epochs_warmup: 0
     learning_rate: 1e-5
 
 training_set:
   systems:
-    read_from: "../common/matbench-sample/matbench-sample-train.xyz" # file where the positions are stored
+    read_from: "../shared/datasets/matbench-sample/train.xyz" # file where the positions are stored
     length_unit: angstrom
   targets:
     energy:
@@ -26,7 +26,7 @@ training_set:
 
 validation_set:
   systems: 
-    read_from: "../common/matbench-sample/matbench-sample-val.xyz" # file where the positions are stored
+    read_from: "../shared/datasets/matbench-sample/val.xyz" # file where the positions are stored
     length_unit: angstrom
   targets:
     energy:
@@ -36,7 +36,7 @@ validation_set:
 
 test_set:
   systems: 
-    read_from: "../common/matbench-sample/matbench-sample-test.xyz" # file where the positions are stored
+    read_from: "../shared/datasets/matbench-sample/test.xyz" # file where the positions are stored
     length_unit: angstrom
   targets:
     energy:
