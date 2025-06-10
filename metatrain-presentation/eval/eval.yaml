@@ -1,0 +1,5 @@
+systems:
+  read_from: water.xyz
+targets:
+  energy:
+    key: energy

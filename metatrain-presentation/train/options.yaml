@@ -1,0 +1,8 @@
+device: cuda
+
+architecture:
+  name: soap_bpnn
+
+training_set: water.xyz
+validation_set: 0.1
+test_set: 0.1
