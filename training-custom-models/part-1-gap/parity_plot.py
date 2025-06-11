@@ -25,4 +25,4 @@ ax.set_xlabel("target energy / eV")
 ax.set_ylabel("predicted energy / eV")
 
 # save plot
-plt.savefig("part-1-gap-parity.png", dpi=200, bbox_inches="tight")
+plt.savefig("parity_plot.png", dpi=200, bbox_inches="tight")
