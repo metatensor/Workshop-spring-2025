@@ -30,7 +30,9 @@ the :ref:`label_basic_usage` tutorial.
 import torch
 
 from metatrain.utils.io import load_model
-
+from metatomic.torch.ase_calculator import MetatomicCalculator
+import ase.io  as aseio  # noqa: E402
+import numpy as np  # noqa: E402
 
 # %%
 #
@@ -40,7 +42,7 @@ from metatrain.utils.io import load_model
 # produced during the training process.
 
 
-model = load_model("model.pt")
+model = load_model("model-pet.pt")
 
 # %%
 #
@@ -54,9 +56,18 @@ from metatrain.utils.neighbor_lists import (  # noqa: E402
     get_system_with_neighbor_lists,
 )
 
+ethanol_systems = aseio.read("ethanol_reduced_100.xyz",':',format='extxyz')
+
+DFT_energies = np.array([i.get_potential_energy() for i in ethanol_systems])
+PET_energies = []
+for atoms in ethanol_systems:
+    atoms.calc = MetatomicCalculator("model-pet.pt",devidece="cpu")
+    atoms.get_potential_energy()
+    PET_energies.append(atoms.get_potential_energy())
+PET_energies = np.array(PET_energies)
+err_true = np.abs(DFT_energies - PET_energies)
 
 ethanol_systems = read_systems("ethanol_reduced_100.xyz")
-
 target_config = {
     "energy": {
         "quantity": "energy",
@@ -165,6 +176,16 @@ outputs = exported_model(ethanol_dataset, evaluation_options, check_consistency=
 lpr = outputs["mtt::aux::energy_uncertainty"].block().values.detach().cpu().numpy()
 print(f"LPR values: {lpr}")
 
+import matplotlib.pyplot as plt
+
+plt.figure()
+plt.loglog(err_true, lpr, 'o', markersize=5, alpha=0.7)
+plt.xlabel('True error |DFT - PET| (kcal/mol)')
+plt.ylabel('LLPR uncertainty')
+plt.title('True error vs LLPR on log–log scale')
+plt.grid(True, which='both', ls='--', lw=0.5)
+plt.tight_layout()
+plt.show()
 # %%
 #
 # We can now visualize the LPR values using the `plot_atoms` function from
