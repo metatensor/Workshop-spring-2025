@@ -62,6 +62,5 @@ In the end of this tutorial, you can open the `summary.ipynb` notebook to see
 the summary of the fine-tuning results.
 
 ## References
-
-1. Gigli, Lorenzo, et al. "Mechanism of charge transport in lithium thiophosphate." Chemistry of Materials 36.3 (2024): 1482-1496.
-2. Mazitov, Arslan, et al. "PET-MAD, a universal interatomic potential for advanced materials modeling." arXiv preprint arXiv:2503.14118 (2025).
+1. [Gigli, Lorenzo, et al. "Mechanism of charge transport in lithium thiophosphate." Chemistry of Materials 36.3 (2024): 1482-1496](https://pubs.acs.org/doi/full/10.1021/acs.chemmater.3c02726)
+2. [Mazitov, Arslan, et al. "PET-MAD, a universal interatomic potential for advanced materials modeling." arXiv preprint arXiv:2503.14118 (2025)](https://arxiv.org/abs/2503.14118)
