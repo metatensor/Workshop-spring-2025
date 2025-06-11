@@ -1,11 +1,3 @@
-
-Run MD with LAMMPS
-
-Optional: extension modules (ZBL, LR)
-
-Do UQ 
-
-
 # Part 2a: Training a PET model
 
 ## Activate the virtual environment
@@ -91,3 +83,6 @@ TODO!
 # Part 2c: Uncertainty Quantification
 
 TODO!
+
+
+# [Optional: ZBL, LR]
