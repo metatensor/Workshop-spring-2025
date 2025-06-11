@@ -1,14 +1,15 @@
 
 # Part 0: Set up
 
-**Note**: these commands are a simplified version of the instructions found on the (PET-MAD repository)[https://github.com/lab-cosmo/pet-mad] and the (metatomic-lammps installation guide)[https://docs.metatensor.org/metatomic/latest/engines/lammps.html#how-to-install-the-code]
+> [!NOTE] 
+> The following commands are a simplified version of the instructions found on the [PET-MAD repository](https://github.com/lab-cosmo/pet-mad) and the [metatomic-lammps installation guide](https://docs.metatensor.org/metatomic/latest/engines/lammps.html#how-to-install-the-code)
 
 ## Installing `conda`
 
-If you don't already have `conda`, please install miniforge following the instructions below. Otherwise, please continue from the next section. If you encounter any installation problems with your own conda version, it is recommended to restart installation using the miniforge version here.
+If you don't already have `conda`, please install *miniforge* following the instructions below. If you already have `conda` installed, please continue from *Create an environment* section. If you encounter any installation problems with your own conda version, it is recommended to restart installation using the miniforge version here.
 
 ```bash
-wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+wget "https://github.com/conda-forge/minifoge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 
@@ -28,9 +29,10 @@ pip install featomic-torch skmatter scipy
 
 ## Download the data
 
-In an appropriate project folder, create a `data/` subdirectory and copy the training data there from the workshop repository.
+Create a new appropriate project folder and copy the training data from the workshop repository into a `data` subdirectory
 
 ```bash
+mkdir mts_workshop && cd mts_workshop
 mkdir data && cd data
 curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/data/ethanol_reduced_100.xyz
 curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/data/rmd17_ethanol_1000.xyz
@@ -44,23 +46,18 @@ In your project folder, create a new subdirectory `part-1-gap/` and copy the par
 
 ```bash
 cd .. && mkdir part-1-gap && cd part-1-gap
-curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-1-gap/options-part-1-gap-incomplete.yaml
+curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-1-gap/options.yaml
 ```
 
-Create a copy of the input file, and with reference to the metatrain (Getting Started documentation)[https://metatensor.github.io/metatrain/latest/getting-started/] complete the `options.yaml` input file.
+Fill the `options.yaml` input file with reference to the metatrain [Getting Started documentation](https://metatensor.github.io/metatrain/latest/getting-started/).
 
-```bash
-cp options-part-1-gap-incomplete.yaml options-part-1-gap.yaml
-# ... TODO: fill in input file
-```
 
 <br>
 <details>
 <summary><b>Stuck?</b> Expand the toggle to see how to download the reference input file. This also applies to all other incomplete input files in the tutorial.</summary>
 
 ```bash
-cd .. && mkdir part-1-gap && cd part-1-gap
-curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-1-gap/options-part-1-gap-complete.yaml
+curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-1-gap/options-complete.yaml
 ```
 </details>
 <br>
@@ -69,35 +66,20 @@ curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/h
 
 Now run GAP training as follows:
 ```bash
-mtt train options-part-1-gap.yaml
+mtt train options.yaml
 ```
 
-The log is printed to standard out as well as in the log file in the outputs file. Open `./outputs` and inspect the files. The output of each training run is stored in timestamped directories.
+As this is a small dataset, the model should fit pretty quickly.
 
-Inspect `train.log`. Important set up information is printed, such as:
+The printed log file also saved to the outputs file. Open `./outputs` and inspect the files. The output of each training run is stored in timestamped directories.
 
-```
-...
-[2025-06-11 11:42:35][INFO] - Forces found in section 'energy', we will use this gradient to train the model
-...
-[2025-06-11 11:42:35][INFO] - Model defined for atomic types: [1, 6, 8]
-```
+Inspect `train.log`. Important set up information and try to extract informations like
 
-as well as some statistics on the datasets:
+1. What targets did the training include. Energies? Forces? Stress?
+1. What are chemical elements the model includes?
+1. What is the error estimate for energies and forces? 
 
-```
-[2025-06-11 11:42:35][INFO] - Training dataset:
-    Dataset containing 80 structures
-    Mean and standard deviation of targets:
-    - energy: 
-      - mean -9.708e+04 eV
-      - std  3.989 eV
-    - forces: 
-      - mean 1.318e-08 eV/
-      - std  28.27 eV/
-```
-
-Here you will notice that the units of the force are incorrectly reported as `"eV/"` instead of `"eV/A"` as we would expect. The length unit needs to be specified in the input file. With reference to the documentation page on (Expanded Configuration Format)[https://metatensor.github.io/metatrain/latest/getting-started/custom_dataset_conf.html], expand the `systems` section in your input file and re-run training.
+You may notice that the units of the force are incorrectly reported as `"eV/"` instead of `"eV/A"` as we would expect. The length unit needs to be specified in the input file. With reference to the documentation page on [Expanded Configuration Format](https://metatensor.github.io/metatrain/latest/getting-started/custom_dataset_conf.html), expand the `systems` section in your input file and re-run training.
 
 You should now see statistics like:
 
@@ -112,8 +94,6 @@ You should now see statistics like:
       - mean 6.039e-09 eV/A
       - std  27.86 eV/A
 ```
-
-As this is a small dataset, the model fits pretty quickly.
 
 ### Evaluate the model
 
@@ -149,7 +129,7 @@ Inspect the output printed to standard out. Most notably, the errors on the ener
 
 Further analysis can be performed now that the model is trained. We provide a simple Python script that can be used to generate a parity plot of the target vs predicted energies, but otherwise leave this open-ended.
 
-To run the script, download it from the repository, modify the paths as necessary (indicated with a `#TODO`), and run. This will generate a plot saved at `part-1-gap-parity.png`.
+To run the script, download it from the repository, modify the paths as necessary (indicated with a `#TODO`), and run. This will generate a plot saved at `parity_plot.png`.
 
 ```bash
 curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-1-gap/parity_plot.py
