@@ -1,17 +1,24 @@
 
 # Part 1: Training a GAP model
 
-### Specifying the input file
+## Activate the virtual environment
 
-In your project folder, create a new subdirectory `part-1-gap/` and copy the partially-complete `metatrain` input file there.
+Ensure you're in the `part-1-gap` subdirectory you create in the set up stage, then activate the `conda` and `venv` environments.
 
 ```bash
-cd .. && mkdir part-1-gap && cd part-1-gap
+conda activate gap_env
+source gap_env/bin/activate
+```
+
+## Specifying the input file
+
+Copy the partially-complete `metatrain` input file to your project subdirectory.
+
+```bash
 curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-1-gap/options.yaml
 ```
 
 Fill the `options.yaml` input file with reference to the metatrain [Getting Started documentation](https://metatensor.github.io/metatrain/latest/getting-started/).
-
 
 <br>
 <details>
@@ -34,7 +41,7 @@ As this is a small dataset, the model should fit pretty quickly.
 
 The printed log file also saved to the outputs file. Open `./outputs` and inspect the files. The output of each training run is stored in timestamped directories.
 
-Inspect `train.log`. Important set up information and try to extract informations like
+Inspect `train.log`. Important set up information and try to extract information. Some hints:
 
 1. What targets did the training include. Energies? Forces? Stress?
 1. What are chemical elements the model includes?
