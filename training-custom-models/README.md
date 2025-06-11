@@ -109,7 +109,7 @@ targets:
       unit: eV # unit of the target value
 ```
 
-More details on evaluation can be found in the (usage documentation)[https://metatensor.github.io/metatrain/latest/examples/basic_usage/usage.html].
+More details on evaluation can be found in the [usage documentation](https://metatensor.github.io/metatrain/latest/examples/basic_usage/usage.html).
 
 Then the model can be evaluated as follows, specifying the specific path to the saved `model.pt` file in the outputs directory.
 
