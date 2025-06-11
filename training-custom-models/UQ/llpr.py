@@ -61,7 +61,7 @@ ethanol_systems = aseio.read("ethanol_reduced_100.xyz",':',format='extxyz')
 DFT_energies = np.array([i.get_potential_energy() for i in ethanol_systems])
 PET_energies = []
 for atoms in ethanol_systems:
-    atoms.calc = MetatomicCalculator("model-pet.pt",devidece="cpu")
+    atoms.calc = MetatomicCalculator("model-pet.pt",device="cpu")
     atoms.get_potential_energy()
     PET_energies.append(atoms.get_potential_energy())
 PET_energies = np.array(PET_energies)
