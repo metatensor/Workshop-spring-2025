@@ -1,4 +1,4 @@
-systems: "../common/matbench-sample/matbench-sample-test.xyz"
+systems: "../shared/datasets/Li3PS4-sample/test.xyz"
 targets:
   mtt::matbench_energy:
     forces: false

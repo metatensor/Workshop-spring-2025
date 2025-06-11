@@ -1,4 +1,4 @@
-systems: "../shared/datasets/matbench-sample/test.xyz"
+systems: "../shared/datasets/MAD-sample/test.xyz"
 targets:
   energy:
     forces: false
