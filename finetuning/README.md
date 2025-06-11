@@ -60,3 +60,8 @@ to inspect the errors of the fine-tuned model on both the Li3PS4 and MAD dataset
 
 In the end of this tutorial, you can open the `summary.ipynb` notebook to see
 the summary of the fine-tuning results.
+
+## References
+
+1. Gigli, Lorenzo, et al. "Mechanism of charge transport in lithium thiophosphate." Chemistry of Materials 36.3 (2024): 1482-1496.
+2. Mazitov, Arslan, et al. "PET-MAD, a universal interatomic potential for advanced materials modeling." arXiv preprint arXiv:2503.14118 (2025).
