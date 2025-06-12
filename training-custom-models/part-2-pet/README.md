@@ -112,6 +112,11 @@ If everything is specified correctly, the simulation should run for 1000 steps a
 
 A log file `log.lammps` is written, as well as the output trajectory `ethanol.xyz`. Inspect the log file. What do you notice about the quantities that should be conserved, such as the temperature?
 
+Download a helper script to plot the thermodynamic qunatities. Run it, and observe the plot saved in `thermo.png`:
+```bash
+curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-2-pet/plot_thermo.py
+```
+
 > [!NOTE] > `.xyz` files output with LAMMPS include the atomic type numbers instead of the symbols. For the purposes of this demo, we will find and replace these types with their symbols to give an `.xyz` file that is readable by common visualization software.
 
 Download and use a helper script to make this change:
@@ -146,7 +151,30 @@ Export the PET-MAD model, downloading from the Hugging-Face repository. More det
 mtt export https://huggingface.co/lab-cosmo/pet-mad/resolve/main/models/pet-mad-latest.ckpt
 ```
 
-Copy the LAMMPS input files to the current directory
+Copy the LAMMPS input files from before to the current directory.
+
+```bash
+cp ../pet-ethanol-md/ethanol.data .
+cp ../pet-ethanol-md/ethanol.in .
+cp ../pet-ethanol-md/plot_thermo.py .
+cp ../pet-ethanol-md/convert_xyz_symbols.sh .
+```
+
+Now change the path of the model in the `pair_style` command:
+
+```bash
+# pair_style metatomic ../model.pt  # before
+pair_style metatomic pet-mad-latest.pt  # after
+```
+
+and now we can run MD again!
+
+```bash
+lmp -in ethanol.in
+```
+
+Plot again the thermodynamic quantities and visualize the trajectory. What do you notice now?
+
 
 # Part 2c: Uncertainty Quantification
 
