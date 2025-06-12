@@ -31,5 +31,5 @@ Everytime you see this icon
 ![task icon](img/clipboard.png)
 
 This means you need to modify the code to make it work and make a small test
-pass. All the modifications should only require basic Python knowledge, and no
+pass. Most of the modifications should only require basic Python knowledge, and no
 specific PyTorch/metatensor/metatomic knowledge.
