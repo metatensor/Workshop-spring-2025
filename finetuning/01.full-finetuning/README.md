@@ -6,7 +6,7 @@ In this example, we fully finetune the pre-trained PET-MAD model on a Li3PS4 dat
 
 ### Steps to Run
 1. Open the `options.yaml` file and setup the finetuning options. First of all, add the
-   precision and seed options:
+   desired machine precision and random seed options:
 
    ```yaml
    base_precision: 32
@@ -49,7 +49,7 @@ In this example, we fully finetune the pre-trained PET-MAD model on a Li3PS4 dat
    mtt train options.yaml -o pet-mad-Li3PS4-full-finetuning.pt
    ```
 
-3. Run `bash finetune.sh`. This will train the model after loading the PET-MAD checkpoint. The training process will take several minutes. Please have a look at `options.yaml` to see how the finetuning is defined.
+3. Run `bash finetune.sh`. This will train the model after loading the PET-MAD checkpoint. The training process will take several minutes. 
 4. Run `bash eval.sh`. This file is already prepared for you. It will export the PET-MAD model from the checkpoint and evaluate it on two datasets: Li3PS4 and MAD.
 
 ### Post-Execution

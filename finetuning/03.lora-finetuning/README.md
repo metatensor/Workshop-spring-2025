@@ -25,7 +25,7 @@ while the rank of added LoRA weights is determined by the `rank` parameter.
    where `alpha` is the scaling parameter that controls the impact of the LoRA weights,
    and `rank` is the rank of the LoRA weights.
 
-2. Run `bash finetune.sh`. This will train the model after loading the PET-MAD checkpoint. The training process will take several minutes. Please have a look at `options.yaml` to see how the finetuning is defined.
+2. Run `bash finetune.sh`. This will train the model after loading the PET-MAD checkpoint. The training process will take several minutes. 
 3. Run `bash eval.sh`. This will export the PET-MAD model from the checkpoint and evaluate it on two datasets: Li3PS4 and MAD.
 
 ### Post-Execution

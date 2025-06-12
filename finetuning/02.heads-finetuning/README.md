@@ -22,7 +22,7 @@ weights of the model except for the selected target-specific heads, which are fi
 
    where `head_modules` and `last_layer_modules` are the modules to finetune.
 
-2. Run `bash finetune.sh`. This will train the model after loading the PET-MAD checkpoint. The training process will take several minutes. Please have a look at `options.yaml` to see how the finetuning is defined.
+2. Run `bash finetune.sh`. This will train the model after loading the PET-MAD checkpoint. The training process will take several minutes. 
 3. Run `bash eval.sh`. This will export the PET-MAD model from the checkpoint and evaluate it on two datasets: Li3PS4 and MAD.
 
 ### Post-Execution

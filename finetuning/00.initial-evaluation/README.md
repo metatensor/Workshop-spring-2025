@@ -6,12 +6,14 @@ This example shows how to evaluate the existing pre-trained PET-MAD model on two
 
 ### Steps to Run
 1. Open the `eval.sh` file and setup the export of a PET-MAD checkpoint to the
-   TorchScript format. We will need the scripted model to be able to run the evaluation
-   step.
+   TorchScript format. This will create you the model file pet-mad-v1.0.1.pt, 
+   which you can use to predict the energy of chemical structures. 
+   We will need the scripted model to be able to run the evaluation step.
 
    ```bash
    mtt export ../shared/models/pet-mad-v1.0.1.ckpt -o pet-mad-v1.0.1.pt
    ```
+
 2. Write the `mtt eval` commands to evaluate the exported model on Li3PS4 and MAD datasets
    and save the predictions to the corresponsing files. The paths to the datasets, as well as the
    target to evaluate the model for will be written the in the `eval-options.yaml` file on the next
@@ -24,7 +26,8 @@ This example shows how to evaluate the existing pre-trained PET-MAD model on two
    
    where `-b 8` flags sets the batch size to 8.
 
-3. Setup the `eval-options-Li3PS4.yaml` and `eval-options-MAD.yaml` files to provide the evaluation options and paths for each dataset.
+3. Setup the `eval-options-Li3PS4.yaml` and `eval-options-MAD.yaml` files to provide the evaluation options and paths for each dataset. 
+   First set up the yaml file for the Li3PS4 dataset:
 
    ```yaml
    systems: "../shared/datasets/Li3PS4-sample/test.xyz" # Dataset path
@@ -33,7 +36,7 @@ This example shows how to evaluate the existing pre-trained PET-MAD model on two
        forces: false # Whether to evaluate the forces
        stress: false # Whether to evaluate the stress
    ```
-   and the same for the MAD dataset:
+   and the same for the MAD:
 
    ```yaml
    systems: "../shared/datasets/MAD-sample/test.xyz" # Dataset path
