@@ -6,20 +6,24 @@ architecture:
     d_pet: 256
 
   training:
-    batch_size: 4
+    batch_size: 8
     num_epochs: 100
     num_epochs_warmup: 0
     learning_rate: 1e-4
     finetune:
-      method: full
+      method: heads
       read_from: "../shared/models/pet-mad-v1.0.1.ckpt"
+      config:
+        head_modules: ['node_heads', 'edge_heads']
+        last_layer_modules: ['node_last_layers', 'edge_last_layers']
+
       
 training_set:
   systems:
     read_from: "../shared/datasets/Li3PS4-sample/train.xyz" # file where the positions are stored
     length_unit: angstrom
   targets:
-    mtt::matbench_energy:
+    mtt::r2scan_energy:
       unit: eV
       forces: false
       stress: false
@@ -29,7 +33,7 @@ validation_set:
     read_from: "../shared/datasets/Li3PS4-sample/val.xyz" # file where the positions are stored
     length_unit: angstrom
   targets:
-    mtt::matbench_energy:
+    mtt::r2scan_energy:
       unit: eV
       forces: false
       stress: false
@@ -39,7 +43,7 @@ test_set:
     read_from: "../shared/datasets/Li3PS4-sample/test.xyz" # file where the positions are stored
     length_unit: angstrom
   targets:
-    mtt::matbench_energy:
+    mtt::r2scan_energy:
       unit: eV
       forces: false
       stress: false

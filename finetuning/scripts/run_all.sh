@@ -24,3 +24,9 @@ cd $SCRIPT_DIR/../03.lora-finetuning
 bash finetune.sh
 bash eval.sh
 cd $SCRIPT_DIR
+
+# Run 04.transfer-learning
+cd $SCRIPT_DIR/../04.transfer-learning
+bash finetune.sh
+bash eval.sh
+cd $SCRIPT_DIR
