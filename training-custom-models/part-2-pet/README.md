@@ -178,6 +178,24 @@ Plot again the thermodynamic quantities and visualize the trajectory. What do yo
 
 # Part 2c: Uncertainty Quantification
 
-TODO!
+Uncertainty quanitfication, as seen in the talks, is another important part of atomistic machine learning that is garnering more attention in recent years. Based on the last layer prediction rigidity (LLPR) formalism, the uncertainty of models in metatrain can be evaluated.
 
-# [Optional: ZBL, LR]
+> [!NOTE]
+> Relevant references can be found [here](https://pubs.acs.org/doi/10.1021/acs.jctc.3c00704) and [here](https://arxiv.org/html/2403.02251v1).
+
+In this section we will demonstrate how this is done. As this is not currently available directly in metatrain using CLI commands, we will use some helper scripts instead. This is based on the [programmatic LLPR tutorial](https://metatensor.github.io/metatrain/latest/examples/programmatic/llpr/llpr.html) found in the metatrain documentation.
+
+First create a new subdirectory.
+
+```bash
+cd .. && mkdir pet-mad-uq && cd pet-mad-uq
+```
+
+Generate an uncertainty plot for the latest version of PET-MAD.
+
+```bash
+python llpr.py --model_path=../pet-mad-md/pet-mad-latest.pt --output_figure="ethanol_llpr_vs_true_error_petmad.png"
+```
+
+Inspect the output plot. Here we plot the actual error on the energy against the uncertainty on the energy. We would expect to see somewhat of a positive correlation between the two, but as the dataset here is small it is difficult to resolve.
+
