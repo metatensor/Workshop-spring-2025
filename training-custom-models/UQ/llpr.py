@@ -20,6 +20,7 @@ import torch
 
 from metatrain.utils.io import load_model
 from metatomic.torch.ase_calculator import MetatomicCalculator
+import argparse
 import ase.io  as aseio  # noqa: E402
 import numpy as np  # noqa: E402
 
@@ -47,7 +48,15 @@ import matplotlib.pyplot as plt
 # and, for many models, also the path to the respective extensions directory. Both are
 # produced during the training process.
 
-model_path = "model-pet.pt"
+parser = argparse.ArgumentParser(description="Compute LLPR uncertainties")
+parser.add_argument(
+    "--model-path",
+    type=str,
+    default="model-pet.pt",
+    help="Path to the exported PET model"
+)
+args = parser.parse_args()
+model_path = args.model_path
 #model_path = "pet-mad-latest.pt"
 model = load_model(model_path)
 
