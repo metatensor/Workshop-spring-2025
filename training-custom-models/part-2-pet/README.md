@@ -40,7 +40,7 @@ Run PET training as follows:
 mtt train options.yaml
 ```
 
-[PET is a transformer-based GNN that is trained by gradient descent](https://arxiv.org/abs/2305.19302v3), as opposed to [GAP](https://link.aps.org/doi/10.1103/PhysRevLett.104.136403) that is trained by a one-steop linear algebraic fitting. The iterative minimization of the loss over a number of epochs is seen in the output log file.
+[PET is a transformer-based GNN that is trained by gradient descent](https://arxiv.org/abs/2305.19302v3), as opposed to [GAP](https://link.aps.org/doi/10.1103/PhysRevLett.104.136403) that is trained by a one-step linear algebraic fitting. The iterative minimization of the loss over a number of epochs is seen in the output log file.
 
 Copy the `eval.yaml` options file you created before in subdirectory `part-1-gap` to the working directory. Run model evaluation as before. As PET requires no extensions, this can be omitted from the command.
 
@@ -53,7 +53,7 @@ Again inspect the output printed to standard out, making a note of the errors on
 Copy `parity_plot.py` from the `part-1-gap` directory to the working directory, modify the paths as appropriate, and generate the parity plot. Compare to the one you generated for the GAP model.
 
 > [!NOTE]
-> Typically, highly expressive NN-based models such as PET need far longer to train than kernel models. 10 epochs is not nearly enough to achieve comparable results, particularly on such as small and relatively simple dataset. However, as minibatching can be used to iteratively train such models, the memory requirements scale much more favourably and the model can be exposed to more training samples. This allows GNNs to be trained on large datasets, and therefore be more generalizable.
+> Typically, highly expressive NN-based models such as PET need far longer to train than kernel models. 10 epochs is not nearly enough to achieve comparable results, particularly on such as small and relatively simple dataset. However, as batching can be used to iteratively train such models, the memory requirements scale much more favourably and the model can be exposed to more training samples. This allows GNNs to be trained on large datasets, and therefore be more generalizable.
 
 ### Restart training and run for longer
 
@@ -66,13 +66,13 @@ mtt train options.yaml --restart model.ckpt
 ```
 
 > [!NOTE]
-> More detailed instructions can be found in the documentation on [checkpoints](https://metatensor.github.io/metatrain/latest/getting-started/checkpoints.html)
+> More detailed instructions about restarting and checkpoints can be found in the documentation on [checkpoints](https://metatensor.github.io/metatrain/latest/getting-started/checkpoints.html)
 
-The training process should take around 10 minutes. When finished, re-run model evaluation as before and re-generate the parity plot. The predictions should be better than the shorter PET training run, but still not better than the GAP training.
+The training process should take around 10 minutes. When finished, re-run model evaluation as before and re-generate the parity plot. The predictions should be better than the shorter PET training run, but still not better than the GAP training. We will comment on this in a later section.
 
 ### Further training analysis
 
-In the output directory for the last run there is also a file `train.csv`. Process the data using your favourite data processing tool (Python, Excel, GNU-plot) as plot the training and validation loss as a function of epoch. You should see some stochasticity, but a general decrease of the loss.
+In the output directory for the last run there is also a file `train.csv`. Process the data on a log-log plot using your favourite data processing tool (Python, Excel, GNU-plot) as plot the training and validation loss as a function of epoch. You should see some stochasticity, but a general decrease of the loss.
 
 # Part 2b: Running MD with LAMMPS
 
@@ -81,6 +81,9 @@ In the output directory for the last run there is also a file `train.csv`. Proce
 Now that we have a trained PET model, we will use it as the energies and forces calculator for running molecular dynamics (MD) in LAMMPS.
 
 Let's prepare the LAMMPS input file. We have provided a near-complete file for you to inspect and fill in. As understanding LAMMPS inputs can be complex for those not familiar, we will keep these completions simple.
+
+> [!TIP]
+> You can use your favourite search engine and put in each LAMMPS command to find more information. Reference should end up on the [LAMMPS documentation](https://docs.lammps.org/) like for example for the `read_data` command [here](https://docs.lammps.org/read_data.html).
 
 First, create a subdirectory called `pet-ethanol-md`:
 
@@ -108,11 +111,11 @@ Once filled, run MD with LAMMPS.
 lmp -in ethanol.in
 ```
 
-If everything is specified correctly, the simulation should run for 1000 steps and complete in a only a few minutes.
+If everything is specified correctly, the simulation should run for 1000 steps (5 ps) and complete in a only a few minutes.
 
 A log file `log.lammps` is written, as well as the output trajectory `ethanol.xyz`. Inspect the log file. What do you notice about the quantities that should be conserved, such as the temperature?
 
-Download a helper script to plot the thermodynamic qunatities. Run it, and observe the plot saved in `thermo.png`:
+Download a helper script to plot the thermodynamic quantities. Run it, and observe the plot saved in `thermo.png`:
 ```bash
 curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-2-pet/plot_thermo.py
 ```
