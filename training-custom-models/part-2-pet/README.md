@@ -186,7 +186,7 @@ Uncertainty quanitfication, as seen in the talks, is another important part of a
 > [!NOTE]
 > Relevant references can be found [here](https://pubs.acs.org/doi/10.1021/acs.jctc.3c00704) and [here](https://arxiv.org/html/2403.02251v1).
 
-In this section we will demonstrate how this is done. As this is not currently available directly in metatrain using CLI commands, we will use some helper scripts instead. This is based on the [programmatic LLPR tutorial](https://metatensor.github.io/metatrain/latest/examples/programmatic/llpr/llpr.html) found in the metatrain documentation.
+In this section we will demonstrate how this is done. As this is not not yet directly available in metatrain using CLI commands, we will use some helper scripts instead. This is based on the [programmatic LLPR tutorial](https://metatensor.github.io/metatrain/latest/examples/programmatic/llpr/llpr.html) found in the metatrain documentation.
 
 First create a new subdirectory.
 
