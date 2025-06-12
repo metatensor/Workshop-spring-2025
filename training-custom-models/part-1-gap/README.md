@@ -1,4 +1,3 @@
-
 # Part 1: Training a GAP model
 
 ## Activate the virtual environment
@@ -27,12 +26,14 @@ Fill the `options.yaml` input file with reference to the metatrain [Getting Star
 ```bash
 curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-1-gap/options-complete.yaml
 ```
+
 </details>
 <br>
 
 ### Run training and observe outputs
 
 Now run GAP training as follows:
+
 ```bash
 mtt train options.yaml
 ```
@@ -45,7 +46,7 @@ Inspect `train.log`. Important set up information and try to extract information
 
 1. What targets did the training include. Energies? Forces? Stress?
 1. What are chemical elements the model includes?
-1. What is the error estimate for energies and forces? 
+1. What is the error estimate for energies and forces?
 
 You may notice that the units of the force are incorrectly reported as `"eV/"` instead of `"eV/A"` as we would expect. The length unit needs to be specified in the input file. With reference to the documentation page on [Expanded Configuration Format](https://metatensor.github.io/metatrain/latest/getting-started/custom_dataset_conf.html), expand the `systems` section in your input file and re-run training.
 
@@ -55,15 +56,15 @@ You should now see statistics like:
 [2025-06-11 12:05:56][INFO] - Training dataset:
     Dataset containing 80 structures
     Mean and standard deviation of targets:
-    - energy: 
+    - energy:
       - mean -9.708e+04 eV
       - std  4.076 eV
-    - forces: 
+    - forces:
       - mean 6.039e-09 eV/A
       - std  27.86 eV/A
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > The training process occurs in a single step. This is due to the fact that GAP is a kernel model solved by ridge regression. The optimal model weights are found by linear-algebraic methods, with no iterative procedure as expected in gradient descent-based methods.
 
 ### Evaluate the model
@@ -71,13 +72,13 @@ You should now see statistics like:
 In order to evaluate the model on the test set, we can use the `mtt eval` sub-command. First, create the input file `eval.yaml` with the following options:
 
 ```yaml
-systems: 
-    read_from: ../data/ethanol_reduced_100.xyz # file where the positions are stored
-    length_unit: Angstrom
+systems:
+  read_from: ../data/ethanol_reduced_100.xyz # file where the positions are stored
+  length_unit: Angstrom
 targets:
-    energy:
-      key: energy # name of the target value
-      unit: eV # unit of the target value
+  energy:
+    key: energy # name of the target value
+    unit: eV # unit of the target value
 ```
 
 More details on evaluation can be found in the [usage documentation](https://metatensor.github.io/metatrain/latest/examples/basic_usage/usage.html).
@@ -98,7 +99,7 @@ Inspect the output printed to standard out. Most notably, the errors on the ener
 
 ### Analysis
 
-Further analysis can be performed now that the model is trained. We provide a simple Python script that can be used to generate a parity plot of the target vs predicted energies, but otherwise leave this open-ended.
+Further analysis can be performed now that the model is trained. We provide a Python script that can be used to generate a parity plot of the target vs predicted energies, but otherwise leave this open-ended.
 
 To run the script, download it from the repository, modify the paths as necessary (indicated with a `#TODO`), and run. This will generate a plot saved at `parity_plot.png`.
 
@@ -111,4 +112,4 @@ python parity_plot.py
 Questions
 
 1. What do you notice about the distribution of errors?
-2. Re-run the training with modified hyper-parameters. What happens when the cutoff is decreased by 2 Angstrom?
+1. Re-run the training with modified hyper-parameters. What happens when the cutoff is decreased by a factor of two?
