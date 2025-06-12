@@ -47,8 +47,10 @@ import matplotlib.pyplot as plt
 # and, for many models, also the path to the respective extensions directory. Both are
 # produced during the training process.
 
+model_path = "model-pet.pt"
+#model_path = "pet-mad-latest.pt"
+model = load_model(model_path)
 
-model = load_model("model-pet.pt")
 
 # %%
 #
@@ -60,7 +62,7 @@ ethanol_systems = aseio.read("ethanol_reduced_100.xyz",':',format='extxyz')
 DFT_energies = np.array([i.get_potential_energy() for i in ethanol_systems])
 PET_energies = []
 for atoms in ethanol_systems:
-    atoms.calc = MetatomicCalculator("model-pet.pt",device="cpu")
+    atoms.calc = MetatomicCalculator(model_path,device="cpu")
     atoms.get_potential_energy()
     PET_energies.append(atoms.get_potential_energy())
 PET_energies = np.array(PET_energies)
@@ -153,13 +155,13 @@ evaluation_options = ModelEvaluationOptions(
         # request the uncertainty in the atomic energy predictions
         "energy": ModelOutput(per_atom=False),  # needed to request the uncertainties
         "mtt::aux::energy_uncertainty": ModelOutput(per_atom=False),
-        # `per_atom=False` would return the total uncertainty for the system,
-        # or (the inverse of) the TPR (total prediction rigidity)
-        # you also can request other outputs from the model here, for example:
-        # "mtt::aux::energy_last_layer_features": ModelOutput(per_atom=True),
     },
     selected_atoms=None,
 )
+
+model_dtype = next(exported_model.parameters()).dtype
+
+ethanol_dataset = [s.to(model_dtype) for s in ethanol_dataset]
 
 outputs = exported_model(ethanol_dataset, evaluation_options, check_consistency=False)
 lpr = outputs["mtt::aux::energy_uncertainty"].block().values.detach().cpu().numpy()
@@ -167,7 +169,7 @@ print(f"LPR values: {lpr}")
 
 
 plt.figure()
-plt.loglog(err_true, lpr, 'o', markersize=5, alpha=0.7)
+plt.loglog(err_true, np.sqrt(lpr), 'o', markersize=5, alpha=0.7)
 plt.xlabel('True error |DFT - PET| (kcal/mol)')
 plt.ylabel('LLPR uncertainty')
 plt.title('True error vs LLPR on log–log scale')
