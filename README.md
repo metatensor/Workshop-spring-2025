@@ -15,3 +15,5 @@ The subdirectories for the tutorials are
 1. [A deep dive into metatensor for ML model developers](metatensor-metatomic/)
 1. [How to train your model: training custom models on custom datasets](training-custom-models/)
 1. [Fine-tuning the PET-MAD universal model for specific applications](finetuning/)
+
+We hope this workshop (and these resources) would be helpful in familiarizing yourself with the metatensor software ecosystem! Our development efforts are open and live: you can find the entire metatensor software stack [here](https://github.com/metatensor/). We welcome all of your suggestions and feedback! Thank you.
