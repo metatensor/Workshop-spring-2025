@@ -1,0 +1,50 @@
+# ------------------
+# System Setup
+# ------------------
+
+units metal  # Angstroms, eV, picoseconds 
+atom_style atomic
+
+# Read initial cell, positions, masses, types
+read_data   # TODO: the name of the file containing the inital atomic configuration
+
+# ------------------
+# Topology
+# ------------------
+
+pair_style   # TODO: fill in the metatomic pair style and path to model object
+pair_coeff * * 6 1 8
+neighbor 2.0 bin
+
+# ------------------
+# Simulation Parameters
+# ------------------
+
+# Timestep (ps)
+timestep 0.0005
+
+# Temperature (K)
+variable temp equal  # TODO: the temperature
+
+# Initial velocities
+velocity all create ${temp} 4928459 rot yes dist gaussian
+
+# CSVR Thermostate
+fix 1 all temp/csvr ${temp} ${temp} 100.0 54324
+
+# ------------------
+# Output Settings
+# ------------------
+
+# Thermodynamic output
+thermo_style custom step temp pe ke etotal
+thermo 100  # every 100 steps
+
+# Output trajectory every 100 steps
+dump 1 all xyz 100 ethanol_traj.xyz
+
+# ------------------
+# Run Simulation
+# ------------------
+
+run  upto  # TODO: `run <num_steps> upto` fill in the number of steps
