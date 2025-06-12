@@ -1,5 +1,1 @@
-systems: "../shared/datasets/MAD-sample/test.xyz"
-targets:
-  energy:
-    forces: false
-    stress: false
+### YOUR CODE

@@ -1,5 +1,0 @@
-systems: "../shared/datasets/Li3PS4-sample/test.xyz"
-targets:
-  energy:
-    forces: false
-    stress: false

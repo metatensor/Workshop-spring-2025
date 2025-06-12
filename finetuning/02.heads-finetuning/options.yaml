@@ -11,11 +11,7 @@ architecture:
     num_epochs_warmup: 0
     learning_rate: 1e-5
     finetune:
-      method: heads
-      read_from: "../shared/models/pet-mad-v1.0.1.ckpt"
-      config:
-        head_modules: ['node_heads', 'edge_heads']
-        last_layer_modules: ['node_last_layers', 'edge_last_layers']
+      ### YOUR CODE
 
 training_set:
   systems:
