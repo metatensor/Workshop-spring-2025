@@ -25,23 +25,24 @@ Again, fill the `options.yaml` input file with reference to the metatrain [Getti
 ```bash
 curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-2-pet/options-complete.yaml
 ```
+
 </details>
 <br>
-
 
 ### First training run
 
 > [!IMPORTANT]
-> To ensure a demo-length run time, set `num_epochs` to `10`. We will increase this later.
+> To ensure a demo-length run time, set `num_epochs` to `10`. We will increase this value later.
 
 Run PET training as follows:
+
 ```bash
 mtt train options.yaml
 ```
 
-PET is a transformer-based GNN that is trained by gradient descent, as opposed to GAP that is trained by a one-steop linear algebraic fitting. The iterative minimization of the loss over a number of epochs is seen in the output log file.
+[PET is a transformer-based GNN that is trained by gradient descent](https://arxiv.org/abs/2305.19302v3), as opposed to [GAP](https://link.aps.org/doi/10.1103/PhysRevLett.104.136403) that is trained by a one-steop linear algebraic fitting. The iterative minimization of the loss over a number of epochs is seen in the output log file.
 
-Copy the `eval.yaml` options file you created before in subdirectory `part-1-gap` to the working directory. Run model evaluation as before. As PET requires no extensions, this can be ommitted from the command.
+Copy the `eval.yaml` options file you created before in subdirectory `part-1-gap` to the working directory. Run model evaluation as before. As PET requires no extensions, this can be omitted from the command.
 
 ```bash
 mtt eval outputs/2025-06-11/12-13-30/model.pt eval.yaml # TODO: edit the timestamped path
@@ -73,7 +74,6 @@ The training process should take around 10 minutes. When finished, re-run model 
 
 In the output directory for the last run there is also a file `train.csv`. Process the data using your favourite data processing tool (Python, Excel, GNU-plot) as plot the training and validation loss as a function of epoch. You should see some stochasticity, but a general decrease of the loss.
 
-
 # Part 2b: Running MD with LAMMPS
 
 ## Using our bespoke ethanol model
@@ -97,10 +97,10 @@ curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/h
 
 LAMMPS needs typically two input files, a `.data` specifying the starting geometry and a `.in` file specifiying the input settings. For the former, in `ethanol.data`, the first frame from the file `rmd17_ethanol_1000.xyz` is used. For the latter, in `ethanol.in`, various settings are specified and some left blank. Find the `# TODO:` comments and input the following:
 
-* path to the `.data` file containing the initial configuration
-* the correct pair style - `"metatomic"` - and path to the model `.pt` object.
-* the temperature - 300 K
-* the number of steps - start with 1000 and we will increase later.
+- path to the `.data` file containing the initial configuration
+- the correct pair style - `"metatomic"` - and path to the model `.pt` object.
+- the temperature - 300 K
+- the number of steps - start with 1000 and we will increase later.
 
 Once filled, run MD with LAMMPS.
 
@@ -112,8 +112,7 @@ If everything is specified correctly, the simulation should run for 1000 steps a
 
 A log file `log.lammps` is written, as well as the output trajectory `ethanol.xyz`. Inspect the log file. What do you notice about the quantities that should be conserved, such as the temperature?
 
-> [!NOTE]
-> `.xyz` files output with LAMMPS include the atomic type numbers instead of the symbols. For the purposes of this demo, we will find and replace these types with their symbols to give an `.xyz` file that is readable by common visualization software.
+> [!NOTE] > `.xyz` files output with LAMMPS include the atomic type numbers instead of the symbols. For the purposes of this demo, we will find and replace these types with their symbols to give an `.xyz` file that is readable by common visualization software.
 
 Download and use a helper script to make this change:
 
@@ -136,6 +135,7 @@ Now you've seen how PET can be trained from scratch on a dataset. Due to time co
 Now let's instead download the PET-MAD foundation model introduced in the talks. This is a universal MLIP trained on the Massive Atomic Diversity (MAD) dataset. For a lot of systems it should produce reliable trajectories.
 
 First create a new subdirectory.
+
 ```bash
 cd .. && mkdir pet-mad-md && cd pet-mad-md
 ```
@@ -151,6 +151,5 @@ Copy the LAMMPS input files to the current directory
 # Part 2c: Uncertainty Quantification
 
 TODO!
-
 
 # [Optional: ZBL, LR]
