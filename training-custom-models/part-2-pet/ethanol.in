@@ -44,6 +44,14 @@ thermo 100  # every 100 steps
 # Output trajectory every 100 steps
 dump 1 all xyz 100 ethanol_traj.xyz
 
+# Also write these quantities to a separate CSV-style file
+variable step equal step
+variable temp equal temp
+variable pe   equal pe
+variable ke   equal ke
+variable etot equal "ke + pe"
+fix thermo_output all print 100 "${step} ${temp} ${pe} ${ke} ${etot}" file thermo.out screen no title "# Step Temp PotEng KinEng TotEng"
+
 # ------------------
 # Run Simulation
 # ------------------
