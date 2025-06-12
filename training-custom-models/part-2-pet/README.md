@@ -138,9 +138,9 @@ In essence, our training run wasn't extensive enough to achieve an accurate or s
 
 ## Using the PET-MAD foundation model
 
-Now you've seen how PET can be trained from scratch on a dataset. Due to time constraints, we are not able to convergence it to a high accuracy such that it produces a stable MD trajectory.
+Now you've seen how PET can be trained from scratch on a dataset. Due to time constraints during our model training, we are not able to convergence it to a high accuracy such that it produces a stable MD trajectory.
 
-Now let's instead download the PET-MAD foundation model introduced in the talks. This is a universal MLIP trained on the Massive Atomic Diversity (MAD) dataset. For a lot of systems it should produce reliable trajectories.
+Now let's instead download the [PET-MAD foundation model](http://arxiv.org/abs/2503.14118) introduced in the morning talks. This is a universal MLIP trained on the Massive Atomic Diversity (MAD) dataset. For a lot of systems it should produce reliable trajectories.
 
 First create a new subdirectory.
 
