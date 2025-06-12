@@ -8,7 +8,7 @@ Interactive tutorials and presentation slides supporting the spring 2025 metaten
 
 Slides from the morning presentations can be found in the [slides](slides/) subdirectory.
 
-Demo files from the metatrain lecture can be found in [metetrain-presentation](metetrain-presentation/README.md).
+Demo files from the metatrain lecture can be found in [metetrain-presentation/](metetrain-presentation/README.md).
 
 The subdirectories for the tutorials are
 
