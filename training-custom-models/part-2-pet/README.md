@@ -191,11 +191,16 @@ First create a new subdirectory.
 cd .. && mkdir pet-mad-uq && cd pet-mad-uq
 ```
 
+Download the helper script for computing the uncertainty
+
+```bash
+curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-2-pet/uq.py
+```
+
 Generate an uncertainty plot for the latest version of PET-MAD.
 
 ```bash
-python llpr.py --model_path=../pet-mad-md/pet-mad-latest.pt --output_figure="ethanol_llpr_vs_true_error_petmad.png"
+python uq.py --model_path=../pet-mad-md/pet-mad-latest.pt --output_figure="ethanol_uncertainty_vs_error_petmad.png"
 ```
 
 Inspect the output plot. Here we plot the actual error on the energy against the uncertainty on the energy. We would expect to see somewhat of a positive correlation between the two, but as the dataset here is small it is difficult to resolve.
-

@@ -33,7 +33,7 @@ parser.add_argument(
 parser.add_argument(
     "--output_figure",
     type=str,
-    default="ethanol_llpr_vs_true_error.png",
+    default="ethanol_uq_vs_error.png",
     help="Path to the output figure"
 )
 args = parser.parse_args()
