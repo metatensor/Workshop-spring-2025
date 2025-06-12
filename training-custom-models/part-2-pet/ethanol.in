@@ -12,7 +12,7 @@ read_data   # TODO: the name of the file containing the inital atomic configurat
 # Topology
 # ------------------
 
-pair_style   # TODO: fill in the metatomic pair style and path to model object
+pair_style   # TODO: fill in the metatomic pair style and the path to model object
 pair_coeff * * 6 1 8
 neighbor 2.0 bin
 

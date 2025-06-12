@@ -12,7 +12,7 @@ read_data ethanol.data
 # Topology
 # ------------------
 
-pair_style metatomic model.pt
+pair_style metatomic ../model.pt
 pair_coeff * * 6 1 8
 neighbor 2.0 bin
 
@@ -47,4 +47,4 @@ dump 1 all xyz 100 ethanol.xyz
 # Run Simulation
 # ------------------
 
-run 10000 upto
+run 1000 upto
