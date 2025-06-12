@@ -207,3 +207,27 @@ python uq.py --model_path=../pet-mad-md/pet-mad-latest.pt --output_figure="ethan
 ```
 
 Inspect the output plot. Here we plot the actual error on the energy against the uncertainty on the energy. We would expect to see somewhat of a positive correlation between the two, but as the dataset here is small it is difficult to resolve.
+
+You can now run uncertainty quantification evaluation on some more structures. Again, this may be too small to see a proper correlation but gives you an idea of UQ. In the file `uq.py`, change the following lines to use a different dataset, this time of 250 ethanol molecules.
+
+Change:
+```py
+systems_path = "../../data/ethanol_reduced_100.xyz"
+# systems_path = "../../data/rmd17_ethanol_250.xyz"
+```
+
+to:
+```py
+# systems_path = "../../data/ethanol_reduced_100.xyz"
+systems_path = "../../data/rmd17_ethanol_250.xyz"
+```
+
+and re-run UQ:
+```bash
+python uq.py --model_path=../pet-mad-md/pet-mad-latest.pt --output_figure="rmd17_ethanol_uncertainty_vs_error_petmad.png"
+```
+
+
+## Next steps
+
+That concludes the tutorials! Please see the main README for what to do next - namely taking your own dataset and training a model of your choice. Happy training!
