@@ -50,14 +50,20 @@ import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser(description="Compute LLPR uncertainties")
 parser.add_argument(
-    "--model-path",
+    "--model_path",
     type=str,
     default="model-pet.pt",
     help="Path to the exported PET model"
 )
+parser.add_argument(
+    "--output_figure",
+    type=str,
+    default="ethanol_llpr_vs_true_error.pdf",
+    help="Path to the output figure"
+)
 args = parser.parse_args()
 model_path = args.model_path
-#model_path = "pet-mad-latest.pt"
+output_figure = args.output_figure
 model = load_model(model_path)
 
 
@@ -184,6 +190,6 @@ plt.ylabel('LLPR uncertainty')
 plt.title('True error vs LLPR on log–log scale')
 plt.grid(True, which='both', ls='--', lw=0.5)
 plt.tight_layout()
-plt.savefig("ethanol_llpr_vs_true_error.png", dpi=300)
+plt.savefig(output_figure, dpi=300)
 plt.show()
 
