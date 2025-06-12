@@ -3,9 +3,9 @@
 9 atoms
 3 atom types
 
-0.0                      10  xlo xhi
-0.0                      10  ylo yhi
-0.0                      10  zlo zhi
+-10.0                      10  xlo xhi
+-10.0                      10  ylo yhi
+-10.0                      10  zlo zhi
 
 Masses
 

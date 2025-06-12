@@ -21,7 +21,7 @@ neighbor 2.0 bin
 # ------------------
 
 # Timestep (ps)
-timestep 0.0005
+timestep 0.002
 
 # Temperature (K)
 variable temp equal 300.0
@@ -29,8 +29,9 @@ variable temp equal 300.0
 # Initial velocities
 velocity all create ${temp} 4928459 rot yes dist gaussian
 
-# CSVR Thermostate
-fix 1 all temp/csvr ${temp} ${temp} 100.0 54324
+# NVT simulation using CSVR Thermostat
+fix 1 all nve
+fix 2 all temp/csvr ${temp} ${temp} 100.0 54324
 
 # ------------------
 # Output Settings

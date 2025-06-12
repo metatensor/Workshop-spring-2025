@@ -76,9 +76,77 @@ In the output directory for the last run there is also a file `train.csv`. Proce
 
 # Part 2b: Running MD with LAMMPS
 
-Now that we have a trained PET model, we will use it as the energies and forces calculator for running molecular dynamics (MD).
+## Using our bespoke ethanol model
 
-TODO!
+Now that we have a trained PET model, we will use it as the energies and forces calculator for running molecular dynamics (MD) in LAMMPS.
+
+Let's prepare the LAMMPS input file. We have provided a near-complete file for you to inspect and fill in. As understanding LAMMPS inputs can be complex for those not familiar, we will keep these completions simple.
+
+First, create a subdirectory called `pet-ethanol-md`:
+
+```bash
+mkdir pet-ethanol-md && cd pet-ethanol-md
+```
+
+Next, download the relevant input files from the repository
+
+```bash
+curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-2-pet/ethanol.in
+curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-2-pet/ethanol.data
+```
+
+LAMMPS needs typically two input files, a `.data` specifying the starting geometry and a `.in` file specifiying the input settings. For the former, in `ethanol.data`, the first frame from the file `rmd17_ethanol_1000.xyz` is used. For the latter, in `ethanol.in`, various settings are specified and some left blank. Find the `# TODO:` comments and input the following:
+
+* path to the `.data` file containing the initial configuration
+* the correct pair style - `"metatomic"` - and path to the model `.pt` object.
+* the temperature - 300 K
+* the number of steps - start with 1000 and we will increase later.
+
+Once filled, run MD with LAMMPS.
+
+```bash
+lmp -in ethanol.in
+```
+
+If everything is specified correctly, the simulation should run for 1000 steps and complete in a only a few minutes.
+
+A log file `log.lammps` is written, as well as the output trajectory `ethanol.xyz`. Inspect the log file. What do you notice about the quantities that should be conserved, such as the temperature?
+
+> [!NOTE]
+> `.xyz` files output with LAMMPS include the atomic type numbers instead of the symbols. For the purposes of this demo, we will find and replace these types with their symbols to give an `.xyz` file that is readable by common visualization software.
+
+Download and use a helper script to make this change:
+
+```bash
+curl -O https://raw.githubusercontent.com/metatensor/Workshop-spring-2025/refs/heads/main/training-custom-models/part-2-pet/convert_xyz_symbols.sh
+chmod +x convert_xyz_symbols.sh
+./convert_xyz_symbols.sh
+```
+
+Now you can use your favourite software, such as Ovito, VMD, or `chemiscope` in Python ([link here](https://chemiscope.org/)) to visualize the trajectory. If you are unsure, Ovito (download link [here](https://www.ovito.org/)) is recommended.
+
+What do you notice about the trajectory, and how does this align with what you saw in the log file?
+
+In essence, our training run wasn't extensive enough to achieve an accurate or stable enough model - the trajectory blows up!
+
+## Using the PET-MAD foundation model
+
+Now you've seen how PET can be trained from scratch on a dataset. Due to time constraints, we are not able to convergence it to a high accuracy such that it produces a stable MD trajectory.
+
+Now let's instead download the PET-MAD foundation model introduced in the talks. This is a universal MLIP trained on the Massive Atomic Diversity (MAD) dataset. For a lot of systems it should produce reliable trajectories.
+
+First create a new subdirectory.
+```bash
+cd .. && mkdir pet-mad-md && cd pet-mad-md
+```
+
+Export the PET-MAD model, downloading from the Hugging-Face repository. More detailed instructions can again be found in the [PET-MAD repository](https://github.com/lab-cosmo/pet-mad).
+
+```bash
+mtt export https://huggingface.co/lab-cosmo/pet-mad/resolve/main/models/pet-mad-latest.ckpt
+```
+
+Copy the LAMMPS input files to the current directory
 
 # Part 2c: Uncertainty Quantification
 
