@@ -45,13 +45,9 @@ cd 00.initial-evaluation
 bash eval.sh
 ```
 
-Later, you can fine-tune the model using different fine-tuning strategies.
-
-```bash
-cd 01.full-finetuning
-bash finetune.sh # To fine-tune the model
-bash eval.sh # To evaluate the fine-tuned model on the Li3PS4 and MAD datasets
-```
+Later, you can fine-tune the model using different fine-tuning strategies. 
+Every fine-tuning example contains a separate `README.md` file with the instructions
+on how to run the fine-tuning. 
 
 Finally, you can open the `inspect_errors.ipynb` notebook in each exercise folder
 to inspect the errors of the fine-tuned model on both the Li3PS4 and MAD datasets.
