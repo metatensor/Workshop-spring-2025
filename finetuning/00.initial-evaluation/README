@@ -1,0 +1,13 @@
+
+Finetuning with Metatrain
+Example 00 
+
+
+In this example we evaluate the PET-MAD Universal potential using metatrain.
+To do this, please do:
+
+1) Run 'bash eval.sh'. This will export the PET-MAD model from the checkpoint and evaluate it in two datasets: Li3PS4 and MAD 
+2) Look at the computed energies with 'jupyter-notebook inspect-errors.ipynb'. It will generate you parity plots of the model with the DFT data of the respective datasets. This will also save the generated parity plots as pngs.
+
+If you want to delete the generated files, please run 'bash clean.sh'.
+
