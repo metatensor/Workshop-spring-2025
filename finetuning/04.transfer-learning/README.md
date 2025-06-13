@@ -23,8 +23,8 @@ with associated energies.
 
 ### Steps to Run
 1. Open the `options.yaml` file and setup the finetuning options for the heads, following the instructions in the `02.heads-finetuning` example.
-2. Replace the `energy` target in the `training_set`, `validation_set` and `test_set` sections to `mtt::r2scan_energy:`.
-3. Replace the `energy` target (the whole line) in the `eval-options-Li3PS4.yaml` file to `mtt::r2scan_energy:` to evaluate the model on r2SCAN energies. Keep the information about unit, forces and stress.
+2. Replace the `energy:` target in the `training_set`, `validation_set` and `test_set` sections to `mtt::r2scan_energy:`.
+3. Replace the `energy:` target (the whole line) in the `eval-options-Li3PS4.yaml` file to `mtt::r2scan_energy:` to evaluate the model on r2SCAN energies. Keep the information about unit, forces and stress.
 4. Run `bash finetune.sh`. This will train the model after loading the PET-MAD checkpoint. The training process will take several minutes. 
 5. Run `bash eval.sh`. This will export the trained model from the checkpoint and evaluate it on the new dataset.
 
