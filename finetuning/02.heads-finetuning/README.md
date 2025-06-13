@@ -14,7 +14,7 @@ weights of the model except for the selected target-specific heads, which are fi
      training:
        finetune:
          method: heads
-         read_from: "../shared/models/pet-mad-v1.0.1.ckpt"
+         read_from: "../shared/models/pet-mad-latest.ckpt"
          config:
            head_modules: ['node_heads', 'edge_heads']
            last_layer_modules: ['node_last_layers', 'edge_last_layers']

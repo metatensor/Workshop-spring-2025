@@ -14,7 +14,7 @@ This example shows how to evaluate the existing pre-trained PET-MAD model on two
    We will need the scripted model to be able to run the evaluation step.
 
    ```bash
-   mtt export ../shared/models/pet-mad-v1.0.1.ckpt -o pet-mad-v1.0.1.pt
+   mtt export ../shared/models/pet-mad-latest.ckpt -o pet-mad-v1.0.1.pt
    ```
 
 2. Write the `mtt eval` commands to evaluate the exported model on Li3PS4 and MAD datasets

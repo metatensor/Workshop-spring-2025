@@ -16,7 +16,7 @@ while the rank of added LoRA weights is determined by the `rank` parameter.
      training:
        finetune:
          method: lora
-         read_from: "../shared/models/pet-mad-v1.0.1.ckpt"
+         read_from: "../shared/models/pet-mad-latest.ckpt"
          config:
            alpha: 0.5
            rank: 4
