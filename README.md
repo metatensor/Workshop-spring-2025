@@ -2,9 +2,9 @@
     <img src="https://raw.githubusercontent.com/metatensor/metatensor/refs/heads/main/docs/static/images/metatensor-horizontal-dark.png" alt="Metatensor logo" width="600"/>
 </h1>
 
-# Workshop Spring 2025
+# Metatensor Workshop in Spring 2025
 
-Interactive tutorials and presentation slides supporting the spring 2025 metatensor workshop.
+This repository contains unteractive tutorials and presentation slides supporting the spring 2025 metatensor workshop.
 
 Slides from the morning presentations can be found in the [slides](slides/) subdirectory.
 
