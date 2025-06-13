@@ -5,6 +5,9 @@
 This example shows how to evaluate the existing pre-trained PET-MAD model on two different datasets: Li3PS4 and MAD.
 
 ### Steps to Run
+0. Go to the `shared/models/` folder and download the checkpoint for fine-tuning. This
+   can be done with `wget https://huggingface.co/lab-cosmo/pet-mad/resolve/main/models/pet-mad-latest.ckpt`.
+
 1. Open the `eval.sh` file and setup the export of a PET-MAD checkpoint to the
    TorchScript format. This will create you the model file pet-mad-v1.0.1.pt, 
    which you can use to predict the energy of chemical structures. 
