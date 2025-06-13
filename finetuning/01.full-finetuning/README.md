@@ -41,7 +41,7 @@ In this example, we fully finetune the pre-trained PET-MAD model on a Li3PS4 dat
      training:
        finetune:
          method: "full"
-         read_from: "../shared/models/pet-mad-v1.0.1.ckpt" # Path to the PET-MAD checkpoint
+         read_from: "../shared/models/pet-mad-latest.ckpt" # Path to the PET-MAD checkpoint
    ```
 2. Setup the `finetune.sh` file to run the training. The file should contain the following lines:
 

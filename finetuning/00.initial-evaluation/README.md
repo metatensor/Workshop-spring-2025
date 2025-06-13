@@ -9,12 +9,12 @@ This example shows how to evaluate the existing pre-trained PET-MAD model on two
    can be done with `wget https://huggingface.co/lab-cosmo/pet-mad/resolve/main/models/pet-mad-latest.ckpt`.
 
 1. Open the `eval.sh` file and setup the export of a PET-MAD checkpoint to the
-   TorchScript format. This will create you the model file pet-mad-v1.0.1.pt, 
+   TorchScript format. This will create you the model file pet-mad-latest.pt, 
    which you can use to predict the energy of chemical structures. 
    We will need the scripted model to be able to run the evaluation step.
 
    ```bash
-   mtt export ../shared/models/pet-mad-latest.ckpt -o pet-mad-v1.0.1.pt
+   mtt export ../shared/models/pet-mad-latest.ckpt -o pet-mad-latest.pt
    ```
 
 2. Write the `mtt eval` commands to evaluate the exported model on Li3PS4 and MAD datasets
@@ -23,8 +23,8 @@ This example shows how to evaluate the existing pre-trained PET-MAD model on two
    step. For now, let's add the following lines to the `eval.sh` file:
 
    ```bash
-   mtt eval pet-mad-v1.0.1.pt eval-options-Li3PS4.yaml -o Li3PS4-sample-test-predictions.xyz -b 8
-   mtt eval pet-mad-v1.0.1.pt eval-options-MAD.yaml -o MAD-sample-test-predictions.xyz -b 8
+   mtt eval pet-mad-latest.pt eval-options-Li3PS4.yaml -o Li3PS4-sample-test-predictions.xyz -b 8
+   mtt eval pet-mad-latest.pt eval-options-MAD.yaml -o MAD-sample-test-predictions.xyz -b 8
    ```
    
    where `-b 8` flags sets the batch size to 8.
