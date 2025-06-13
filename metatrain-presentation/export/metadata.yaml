@@ -1,0 +1,8 @@
+name: My model
+description: This model was trained on the QM9 dataset.
+authors:
+  - John Doe
+  - Jane Doe
+references:
+  model:
+    - https://arxiv.org/abs/1234.5678
