@@ -6,7 +6,7 @@ Ensure you're in the `part-1-gap` subdirectory you create in the set up stage, t
 
 ```bash
 conda activate gap_env
-source gap_env/bin/activate
+source gap_venv/bin/activate
 ```
 
 ## Specifying the input file
