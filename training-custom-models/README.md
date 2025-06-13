@@ -26,7 +26,7 @@ mkdir part-2-pet
 If you don't already have `conda`, please install *miniforge* following the instructions below. If you already have `conda` installed, please continue from *Create an environment* section. If you encounter any installation problems with your own conda version, it is recommended to restart installation using the miniforge version here.
 
 ```bash
-wget "https://github.com/conda-forge/minifoge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 
