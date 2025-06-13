@@ -26,7 +26,7 @@ In this example, we fully finetune the pre-trained PET-MAD model on a Li3PS4 dat
 
    ```yaml
    architecture:
-     training_set:
+     training:
        batch_size: 8 # Use 8 structures in a batch
        num_epochs: 20 # Run the training for 20 epochs
        num_epochs_warmup: 0 # Do the 0 epochs of the learning rate warmup
