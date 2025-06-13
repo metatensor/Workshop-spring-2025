@@ -1,0 +1,38 @@
+### YOUR CODE
+architecture:
+  ### YOUR CODE
+
+  training:
+    ### YOUR CODE
+    finetune:
+      ### YOUR CODE
+
+training_set:
+  systems:
+    read_from: "../shared/datasets/Li3PS4-sample/train.xyz" # file where the positions are stored
+    length_unit: angstrom
+  targets:
+    energy:
+      unit: eV
+      forces: false
+      stress: false
+
+validation_set:
+  systems: 
+    read_from: "../shared/datasets/Li3PS4-sample/val.xyz" # file where the positions are stored
+    length_unit: angstrom
+  targets:
+    energy:
+      unit: eV
+      forces: false
+      stress: false
+
+test_set:
+  systems: 
+    read_from: "../shared/datasets/Li3PS4-sample/test.xyz" # file where the positions are stored
+    length_unit: angstrom
+  targets:
+    energy:
+      unit: eV
+      forces: false
+      stress: false

@@ -1,0 +1,44 @@
+base_precision: 32
+seed: 0
+architecture:
+  name: pet
+  model:
+    d_pet: 256
+
+  training:
+    batch_size: 8
+    num_epochs: 20
+    num_epochs_warmup: 0
+    learning_rate: 1e-4
+    finetune:
+      ### YOUR CODE
+
+training_set:
+  systems:
+    read_from: "../shared/datasets/Li3PS4-sample/train.xyz" # file where the positions are stored
+    length_unit: angstrom
+  targets:
+    energy:
+      unit: eV
+      forces: false
+      stress: false
+
+validation_set:
+  systems: 
+    read_from: "../shared/datasets/Li3PS4-sample/val.xyz" # file where the positions are stored
+    length_unit: angstrom
+  targets:
+    energy:
+      unit: eV
+      forces: false
+      stress: false
+
+test_set:
+  systems: 
+    read_from: "../shared/datasets/Li3PS4-sample/test.xyz" # file where the positions are stored
+    length_unit: angstrom
+  targets:
+    energy:
+      unit: eV
+      forces: false
+      stress: false
